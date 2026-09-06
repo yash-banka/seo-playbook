@@ -102,10 +102,13 @@ curl -s $BASE/sitemap.xml | grep -o '<loc>[^<]*' | sed 's/<loc>//' | head -50 \
 ## 7. Structured data
 
 ```bash
-curl -s $BASE/some-page | grep -c 'application/ld+json'   # expect 1
+# count blocks, then check for a repeated @type across them
+curl -s $BASE/some-page | grep -o '"@type":"[A-Za-z]*"' | sort | uniq -d
 ```
 
-- [ ] **Exactly one** JSON-LD block (`reference/08` pitfall 6)
+- [ ] **No entity declared twice.** Multiple blocks are fine; a repeated
+      `@type` across them (two `BreadcrumbList`, two `WebSite`) is the bug
+      (`reference/08` pitfall 6). Any output from the command above is a finding
 - [ ] Entities linked by `@id`, no competing duplicates
 - [ ] Markup describes only **visible** content
 - [ ] Validates in the Rich Results Test / Schema Markup Validator

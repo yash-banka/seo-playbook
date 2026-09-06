@@ -1,17 +1,23 @@
 ---
 name: seo-playbook
 description: >-
-  Architect a website's page surface for search and AI visibility, or audit an
-  existing site's SEO. Use WHENEVER the user mentions SEO, GEO, AEO, search
-  rankings, "why isn't this page indexed", meta descriptions, title tags,
-  canonical tags, robots.txt, sitemaps, schema markup / JSON-LD / structured
-  data, internal linking, crawl budget, Core Web Vitals, programmatic or
-  templated pages, landing-page generation at scale, keyword targeting, AI
-  search visibility (ChatGPT / Perplexity / AI Overviews), llms.txt, blocking
-  AI crawlers — and ALSO whenever the user is planning a new site or product
-  site and asks how to structure it, how many pages it should have, or what
-  URLs it should expose. Covers both greenfield architecture and retrofit
-  audits.
+  Architect a website's page surface for search and AI visibility, audit an
+  existing site's SEO, or judge whether a site should do programmatic SEO at
+  all. Use WHENEVER the user mentions SEO, GEO, AEO, search rankings, "why
+  isn't this page indexed", "why isn't my site ranking", "we get no organic
+  traffic", meta descriptions, title tags, canonical tags, robots.txt,
+  sitemaps, schema markup / JSON-LD / structured data, internal linking, crawl
+  budget, Core Web Vitals, programmatic or templated pages, landing-page
+  generation at scale, keyword targeting, AI search visibility (ChatGPT /
+  Perplexity / AI Overviews), llms.txt, blocking AI or SEO-crawler bots.
+  ALSO use for: backlinks, link building, domain authority / domain rating,
+  how a new site earns the right to rank, and how long ranking takes; faceted
+  navigation, filters, e-commerce category and pagination indexing; and
+  whenever the user is planning a new site or product site and asks how to
+  structure it, how many pages it should have, or what URLs it should expose.
+  ALSO use to advise against a generated page surface for a personal site,
+  portfolio, blog, studio or agency, where it would do harm. Covers greenfield
+  architecture, retrofit audits, and authority building.
 user-invocable: true
 ---
 
@@ -88,7 +94,7 @@ crawlers that most sites make by accident.
 
 ---
 
-## The seven rules (load-bearing summary)
+## The eight rules (load-bearing summary)
 
 1. **Manufacture surface from demand, not from permutation.** A cartesian
    product of your capabilities is not a strategy. Enumerate the space, then cut
@@ -104,12 +110,14 @@ crawlers that most sites make by accident.
    scaffold; the differentiating fraction must be the substantive answer to that
    specific query, not spun filler. Say when *not* to use the thing. (`02`)
 
-4. **Server-render the content.** If the answer isn't in the raw HTML, it does
-   not reliably exist for crawlers or for AI retrieval. This is the one decision
-   that serves both AI postures. (`05`)
+4. **Put the content in the raw HTML.** Google renders JavaScript, but slowly
+   and on a budget; most AI crawlers don't render at all. So client-side
+   rendering is survivable for search and close to fatal for AI visibility — and
+   if you render client-side anyway, you owe AI consumers an `llms.txt`. (`05`)
 
-5. **One entity graph per page, linked by `@id`.** Not scattered schema blobs.
-   Never two competing JSON-LD blocks. (`04`)
+5. **One entity graph per page, linked by `@id`.** Multiple JSON-LD blocks are
+   fine; what is never fine is the *same entity declared twice*, unlinked and
+   competing. (`04`)
 
 6. **Link up, sideways, and backwards.** Every leaf links to its hub, its
    siblings, and its inverse. Keep every page within one click of a hub. (`03`)

@@ -40,7 +40,7 @@ fixes it.
 ## Contents
 
 ```
-SKILL.md                      Entry point, routing, the seven rules
+SKILL.md                      Entry point, routing, the eight rules
 reference/
   00-surface-design.md        ★ Demand → page surface. The core method.
   01-architecture.md          Tiered URLs, index tiering, sitemaps

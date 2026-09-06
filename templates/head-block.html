@@ -34,7 +34,10 @@
 <meta name="twitter:description" content="{{DESCRIPTION}}">
 <meta name="twitter:image" content="{{BASE}}/assets/img/og.jpg">
 
-<!-- EXACTLY ONE JSON-LD block per page. Never two. See reference/08 pitfall 6. -->
+<!-- ONE @graph is the cleanest approach and what this template does.
+     If your framework emits several blocks that is fine — the rule is that no
+     entity may be declared TWICE across them (two BreadcrumbList, two WebSite).
+     See reference/04-schema.md and reference/08-pitfalls.md pitfall 6. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",

@@ -41,7 +41,9 @@ whole technical story. It means:
 you have decided anything else.
 
 Verify: `curl -s https://example.com/page | grep "<h1>"`. If your content isn't
-in that output, it does not reliably exist for search or AI.
+in that output it is effectively invisible to AI retrieval, and it reaches
+search only via Google's deferred render queue — survivable, but slower to index
+and increasingly costly as your surface grows.
 
 Acceptable approaches: static generation (best), SSG with hydration, SSR, or
 prerendering at the edge. Not acceptable for content: client-side-only rendering.

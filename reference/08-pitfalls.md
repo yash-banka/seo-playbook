@@ -145,8 +145,8 @@ curl -s $BASE/sitemap.xml | grep -o '<loc>[^<]*' | sed 's/<loc>//' \
 # nonsense URL really 404s
 curl -o /dev/null -w '%{http_code}\n' $BASE/definitely-not-a-real-page
 
-# exactly one JSON-LD block per page
-curl -s $BASE/some-page | grep -c 'application/ld+json'
+# no entity declared twice (multiple blocks are fine; duplicates are not)
+curl -s $BASE/some-page | grep -o '"@type":"[A-Za-z]*"' | sort | uniq -d
 
 # content present without JS
 curl -s $BASE/some-page | grep -E '<h1>|<title>'
