@@ -27,6 +27,20 @@ one specific query each. That single decision is the whole strategy.
 The playbook generalises the method, then cross-checks every claim against
 primary documentation from Google and the standards bodies.
 
+## Who this is for — and who it isn't
+
+**Use it for** sites that must *manufacture* demand capture: tools, catalogues,
+marketplaces, comparison products, documentation, anything with a matrix of
+things people search for.
+
+**Don't use it for** personal sites, portfolios, blogs, studios or agencies.
+Those rank on brand, singular content and earned links — a generated page
+surface would actively harm them. Three such sites studied for this playbook
+rank at the top of genuinely competitive queries with *no structured data, no
+canonical tags and no robots meta*; one ships a title tag reading, in full,
+`About`. If that's your site, skip to
+[`reference/09-authority.md`](reference/09-authority.md).
+
 ## Two modes
 
 | Mode | When | Start at |
@@ -87,8 +101,8 @@ term — but you can trivially outrank *nothing* on a query no one bothered to
 write a page for. That is why this works for a new domain, and why it stops
 working once your targets have real competition.
 
-**And know when not to use it.** Personal sites, portfolios and studios rank on
-brand, singular content and earned links. A generated surface would harm them.
+**And know when not to use it.** See *Who this is for* above — the wrong site
+type is the most expensive mistake available here.
 
 ## Sourcing
 
