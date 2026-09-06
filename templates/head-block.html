@@ -1,0 +1,101 @@
+<!-- ============================================================
+     Head block template. Replace {{PLACEHOLDERS}}.
+     Pairs with reference/03-on-page.md and reference/04-schema.md
+     ============================================================ -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Title: {{KEYWORD}} first, then differentiator, then brand. ~60 chars. -->
+<title>{{KEYWORD}} – {{DIFFERENTIATOR}} | {{BRAND}}</title>
+
+<!-- Description: exact query phrasing + stacked objection-killers. ~155 chars. -->
+<meta name="description" content="{{DESCRIPTION}}">
+
+<link rel="canonical" href="{{CANONICAL_URL}}">
+
+<!-- Tier 2 pages only — product-complete, no search demand.
+     MUST stay crawlable (never robots.txt-disallow a noindexed page)
+     and MUST be excluded from the sitemap. See reference/01.
+<meta name="robots" content="noindex, follow">
+-->
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{BRAND}}">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{DESCRIPTION}}">
+<meta property="og:url" content="{{CANONICAL_URL}}">
+<meta property="og:image" content="{{BASE}}/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{OG_IMAGE_ALT}}">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{TITLE}}">
+<meta name="twitter:description" content="{{DESCRIPTION}}">
+<meta name="twitter:image" content="{{BASE}}/assets/img/og.jpg">
+
+<!-- EXACTLY ONE JSON-LD block per page. Never two. See reference/08 pitfall 6. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{{BASE}}/#organization",
+      "name": "{{BRAND}}",
+      "url": "{{BASE}}/",
+      "logo": {"@type":"ImageObject","url":"{{BASE}}/assets/img/logo.png","width":512,"height":512},
+      "description": "{{ORG_DESCRIPTION}}"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{BASE}}/#website",
+      "name": "{{BRAND}}",
+      "url": "{{BASE}}/",
+      "publisher": {"@id": "{{BASE}}/#organization"},
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "{{BASE}}/#app",
+      "name": "{{BRAND}}",
+      "url": "{{BASE}}/",
+      "applicationCategory": "{{APP_CATEGORY}}",
+      "operatingSystem": "Any browser",
+      "publisher": {"@id": "{{BASE}}/#organization"},
+      "isAccessibleForFree": true,
+      "offers": {"@type":"Offer","price":"0","priceCurrency":"USD"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"{{BASE}}/"},
+        {"@type":"ListItem","position":2,"name":"{{SECTION_NAME}}","item":"{{SECTION_URL}}"},
+        {"@type":"ListItem","position":3,"name":"{{PAGE_NAME}}","item":"{{CANONICAL_URL}}"}
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- OPTIONAL, action pages only: append this object to the @graph above.
+     NOTE: HowTo produces NO rich result any more (reference/04 + 07) —
+     include it only for entity/AI legibility, and only if these steps are
+     genuinely visible on the page. Keep the JSON valid: add a comma after
+     the BreadcrumbList object before appending.
+
+     {
+       "@type": "HowTo",
+       "name": "How to {{TASK}}",
+       "totalTime": "PT1M",
+       "step": [
+         {"@type":"HowToStep","name":"{{STEP_1}}","text":"...","url":"{{CANONICAL_URL}}#step1"},
+         {"@type":"HowToStep","name":"{{STEP_2}}","text":"...","url":"{{CANONICAL_URL}}#step2"}
+       ]
+     }
+-->
+
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="{{THEME_COLOR}}">
+<link rel="icon" href="data:image/svg+xml,{{INLINE_SVG_FAVICON}}">
+<link rel="stylesheet" href="/assets/css/style.css">
