@@ -43,6 +43,13 @@ can answer, and how much of that space deserves a URL?"**
 
 ## Routing: which mode are you in?
 
+**First: does this playbook even apply?** It is written for sites that must
+*manufacture* demand capture. Personal sites, portfolios and studios generally
+should not — they rank on brand, singular content and earned links, and a
+generated surface would actively harm them. Read the "When this playbook does
+not apply" section of `reference/00-surface-design.md` before proceeding if the
+site is of that kind.
+
 **Mode A — Architect** (the site does not exist yet, or a new section is being
 planned). This is the primary mode and the higher-leverage one.
 
@@ -74,6 +81,7 @@ crawlers that most sites make by accident.
 | `reference/06-ai-search.md` | Posture A vs B: AI visibility or AI refusal |
 | `reference/07-sources.md` | Primary-source citations for every claim |
 | `reference/08-pitfalls.md` | Failure modes and how to detect them |
+| `reference/09-authority.md` | **Earning the right to rank at all** |
 | `templates/` | `<head>` block, robots.txt, page archetypes |
 | `worksheets/surface-plan.md` | **★ Fill-in worksheet for Mode A** |
 | `audit-checklist.md` | Mode B run sheet |
@@ -109,6 +117,12 @@ crawlers that most sites make by accident.
 7. **Decide the AI posture on purpose.** Allowing or blocking AI crawlers is a
    strategic choice with real trade-offs both ways. Default-by-accident is the
    only wrong answer. (`06`)
+
+8. **Know that surface is authority avoidance.** Only ~1.74% of new pages reach
+   the top 10 within a year, and ~72.9% of top-10 results are over three years
+   old. A manufactured surface wins by competing where nobody showed up — which
+   is why it works for a new domain, and why it stops working the moment your
+   targets have real competition. (`09`)
 
 ---
 

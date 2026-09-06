@@ -96,8 +96,25 @@ Verify: `curl -o /dev/null -w "%{http_code}" https://example.com/nonsense`
   internal linking to the canonical form. Don't canonicalise pages that aren't
   genuine duplicates — for near-duplicates that must both exist, differentiate
   them or noindex one instead.
-- Directional pairs (A→B and B→A) are **not** duplicates. Both self-canonicalise
-  and cross-link.
+- **Pairs: ask whether the relationship is directional or symmetric.** This is
+  the mistake most matrix sites make in one direction or the other.
+
+  | Relationship | Is A→B a different job from B→A? | Treatment |
+  |---|---|---|
+  | Conversion (`png-to-jpg`) | **Yes** — different output, different query | Build both, self-canonicalise both, cross-link |
+  | Integration (`connect A and B`) | **No** — one job | Build one, canonicalise the other to it |
+  | Comparison (`A vs B`) | **Usually no** | Pick one order as canonical |
+  | Directional transfer (`A to B rate`) | **Yes** — the query is directional | Build both |
+
+  A large B2B automation platform demonstrates the symmetric case precisely: it
+  serves both orderings of its integration pairs, and the reverse URL carries a
+  canonical pointing at the primary one. Connecting two apps is a single job, so
+  it gets a single indexable page — while both URLs stay reachable for users and
+  internal links.
+
+  Get this wrong in the symmetric direction and you double your surface with
+  genuine duplicates. Get it wrong in the directional direction and you throw
+  away half your qualified traffic.
 
 ## Sitemaps
 
@@ -123,6 +140,63 @@ Verify: `curl -o /dev/null -w "%{http_code}" https://example.com/nonsense`
 - Blocking a genuinely non-content directory (a vendored engine, build assets)
   is legitimate crawl-budget hygiene.
 - AI crawler directives: see `06-ai-search.md`.
+
+## Faceted navigation — index control by *depth*
+
+Facets (colour × size × brand × price × sort × page) generate a combinatorial
+URL space that is effectively infinite. This is the hardest index-control
+problem in SEO, and the technique that works is not "noindex the facets" — it is
+a **depth threshold**.
+
+The insight: facet *demand* collapses fast with depth.
+
+| Facets combined | Example query | Demand | Treatment |
+|---|---|---|---|
+| 0 | "sofas" | High | Index |
+| 1 | "blue sofas" | Real | Index |
+| 2 | "blue leather sofas" | Thin but real | Index selectively |
+| 3+ | "blue leather 3-seat under-£800 sofas sorted by price" | Effectively zero | Block |
+
+A UK department store implements exactly this in `robots.txt`, using the fact
+that its facet URLs encode each selected value with a repeated separator. It
+allows the shallow canonical facet form, then disallows any URL whose separator
+repeats past a threshold — five or more combined facets are simply uncrawlable.
+It additionally blocks URLs where the *same* parameter appears twice, which is
+the classic infinite-loop signature.
+
+A large home-goods retailer applies the identical idea to **pagination**: the
+first few pages of a listing are explicitly allowed, everything deeper is
+disallowed by wildcard. Page 40 of a category has no search demand and no unique
+content; it exists for users, not for crawlers.
+
+**The general pattern:**
+
+```
+Allow:    /browse/*/{one-facet-form}
+Allow:    /browse/*/{two-facet-form}
+Disallow: /browse/*/{three-or-more-facet-form}
+Disallow: */{param}=*/{param}=*          # same parameter twice
+Disallow: /browse/*/*/*/*/*/*/*/*/*/     # excessive path depth
+```
+
+**Which control to use where** — these are not interchangeable:
+
+| Situation | Control | Why |
+|---|---|---|
+| Facet has real demand | Index, self-canonical | It is a destination |
+| Facet is a thin variant of an indexed page | `canonical` to the parent | Consolidates signals |
+| Facet combination has no demand but users need it | `noindex, follow` | Works, stays out of the index |
+| Combinatorial explosion, never useful | **`robots.txt` disallow** | Stops the crawl before it starts |
+
+Note the last row is the one case where robots.txt disallow is right rather than
+`noindex`. The distinction: `noindex` requires the crawler to *fetch* the page
+to see the directive, which is fine for hundreds of URLs and hopeless for
+millions. When the space is combinatorially infinite, you must prevent the crawl,
+not the indexing — accepting that a disallowed URL can still be indexed
+link-only, which is a price worth paying at that scale.
+
+Sorting and view parameters (`?sort=`, `?view=`, `?page_size=`) should never be
+indexable: canonical them to the unparameterised URL.
 
 ## Crawl budget
 

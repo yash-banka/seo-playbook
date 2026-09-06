@@ -67,4 +67,37 @@ Disallow: /
 User-agent: *
 Disallow: /vendor/
 
+
+# ---------------------------------------------------------------------------
+# OPTIONAL — SEO / competitive-intelligence crawlers. See reference/06.
+# These are neither search engines nor AI trainers: they build the link and
+# keyword databases that let anyone (including competitors) audit your site.
+# Blocking them has NO effect on rankings. The cost is your own tooling, and
+# not appearing in other people's research.
+# ---------------------------------------------------------------------------
+# User-agent: AhrefsBot
+# Disallow: /
+# User-agent: SemrushBot
+# Disallow: /
+# User-agent: MJ12bot
+# Disallow: /
+# User-agent: DotBot
+# Disallow: /
+# User-agent: rogerbot
+# Disallow: /
+
+
+# ---------------------------------------------------------------------------
+# OPTIONAL — faceted navigation depth threshold. See reference/01.
+# Allow shallow facet combinations (real demand), block deep ones (infinite
+# combinatorial space). This is the ONE case where robots.txt disallow beats
+# noindex: at combinatorial scale the crawler can't fetch every page to read
+# a directive.
+# ---------------------------------------------------------------------------
+# Allow:    /browse/*/{one-facet-pattern}
+# Allow:    /browse/*/{two-facet-pattern}
+# Disallow: /browse/*/{three-plus-facet-pattern}
+# Disallow: */price=*/price=*              # same parameter twice
+# Disallow: /browse/*/*/*/*/*/*/*/*/*/     # excessive path depth
+
 Sitemap: https://example.com/sitemap.xml

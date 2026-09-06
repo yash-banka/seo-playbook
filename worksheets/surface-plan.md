@@ -12,15 +12,37 @@ Fill this in **before writing any code**. Method: `reference/00-surface-design.m
 
 ---
 
+## 0.5 Does this playbook apply?
+
+☐ This site must **manufacture** demand capture (tool, catalogue, marketplace,
+  matrix product) → continue
+
+☐ This is a **personal site, portfolio, studio or agency** → **stop.** These
+  rank on brand, singular content and earned links. Read "When this playbook
+  does not apply" in `reference/00-surface-design.md` and go to
+  `reference/09-authority.md` instead. A generated surface would harm you.
+
+---
+
 ## 1. Dimensions
 
-| # | Shape | Dimension A | Dimension B | Raw cells |
-|---|---|---|---|---|
-| 1 | pair matrix / verb×object / entity / attribute×entity / comparison / geo×service | | | |
-| 2 | | | | |
-| 3 | | | | |
+| # | Shape | Dimension A | Dimension B | Symmetric? | Raw cells |
+|---|---|---|---|---|---|
+| 1 | pair matrix / verb×object / entity / attribute×entity / comparison / geo×service | | | ☐ | |
+| 2 | | | | ☐ | |
+| 3 | | | | ☐ | |
 
 **Total raw cells:** ______  ← enumerate fully; do not cut yet.
+
+**Symmetry check** (`reference/01`): for each pair matrix, is A→B a *different
+job* from B→A?
+- **Different job** (conversion, directional transfer) → build both, both
+  self-canonical, cross-link
+- **Same job** (integration, comparison) → **halve the space now**; pick one
+  canonical ordering rule (alphabetical is deterministic and generator-friendly)
+  and canonical the reverse to it
+
+Getting this wrong doubles your surface with genuine duplicates.
 
 ---
 
@@ -135,7 +157,24 @@ Derivation rules (attribute delta → section):
 
 Reasoning: ______________________________________________
 
-☐ Content is in raw HTML (required either way)
+☐ Content is in raw HTML — *or* client-rendered **plus** an `llms.txt`, since
+  most AI crawlers don't execute JS (`reference/05`)
+
+☐ SEO/competitive-intelligence crawlers: allow ☐ / block ☐ — no ranking effect
+  either way; blocking hides your surface from competitor tooling
+
+## 9.5 Authority reality check (`reference/09`)
+
+Only ~1.74% of new pages reach the top 10 within a year; ~72.9% of top-10 results
+are over 3 years old. A manufactured surface wins by competing **where nobody
+showed up**.
+
+☐ Target queries are genuinely low-competition (not head terms held by
+  established incumbents)
+☐ There is at least one thing on this site worth linking to
+☐ Domain age / existing authority: ____________
+☐ Realistic first-traction horizon: ____________ *(check indexation in weeks,
+  impressions in ~2 months; flat at 3 months means change it, not wait)*
 
 ---
 

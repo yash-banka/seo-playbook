@@ -51,6 +51,7 @@ reference/
   06-ai-search.md             AI visibility vs AI refusal — an explicit fork
   07-sources.md               Primary-source citations for every claim
   08-pitfalls.md              Failure modes and how to detect them
+  09-authority.md             Earning the right to rank at all
 templates/                    <head> block, robots.txt, page archetypes
 worksheets/surface-plan.md    ★ Fill-in worksheet for Mode A
 audit-checklist.md            Mode B run sheet, with verification commands
@@ -78,6 +79,16 @@ reliably exist — for crawlers, or for AI retrieval that doesn't execute JS.
 **Decide the AI posture on purpose.** Allowing or blocking AI crawlers is a real
 strategic choice with costs both ways. Default-by-accident is the only wrong
 answer.
+
+**A manufactured surface is authority avoidance.** Only ~1.74% of newly
+published pages reach the top 10 within a year, and ~72.9% of top-10 results are
+more than three years old. You cannot outrank a five-year-old incumbent on a head
+term — but you can trivially outrank *nothing* on a query no one bothered to
+write a page for. That is why this works for a new domain, and why it stops
+working once your targets have real competition.
+
+**And know when not to use it.** Personal sites, portfolios and studios rank on
+brand, singular content and earned links. A generated surface would harm them.
 
 ## Sourcing
 

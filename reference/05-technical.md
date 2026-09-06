@@ -1,15 +1,32 @@
 # 05 — Technical: rendering, delivery, Core Web Vitals
 
-## Rendering: the one non-negotiable
+## Rendering: split the rule by audience
 
-**The content must be in the raw HTML response.**
+**Put the content in the raw HTML response.** But understand *why*, because the
+reason has changed and the rule is now audience-dependent.
 
-The reference implementation is a JavaScript application — a router, a WASM
-engine, client-side state. Yet every one of its several hundred URLs returns a
-complete, pre-rendered HTML document — well under 20KB — containing the H1,
-the full body copy, the
-comparison table, the FAQ, the internal links and the JSON-LD. The JavaScript
-then hydrates it into an interactive tool.
+| Consumer | Executes JavaScript? | Consequence |
+|---|---|---|
+| Googlebot | Yes, but rendering is deferred and budget-limited | Client-rendered content *can* rank — slower to index, and at scale the deferral bites |
+| Most AI crawlers | Largely **no** | Client-rendered content is effectively invisible to AI retrieval |
+
+So client-side rendering is survivable for classic search and close to fatal for
+AI visibility. Two observed data points make the trade concrete:
+
+- A major payments platform's developer documentation is almost entirely
+  client-rendered — a ~1.1MB response containing only a couple of hundred words
+  of readable text and no `<h1>` — and it ranks strongly, because Google renders
+  it. **But it also publishes a ~90KB `llms.txt`**, which is precisely the
+  compensation this trade-off demands. That pairing is the lesson: if you render
+  client-side, you owe AI consumers a readable path by some other route.
+- A large open web reference serves its content fully server-rendered — several
+  thousand words in the raw HTML — and needs no such workaround.
+
+The reference implementation takes the simpler route. It is a JavaScript
+application — a router, a WASM engine, client-side state — yet every URL returns
+a complete, pre-rendered HTML document, well under 20KB, containing the H1, the
+full body copy, the comparison table, the FAQ, the internal links and the
+JSON-LD. The JavaScript then hydrates it into an interactive tool.
 
 That combination — **static HTML for the reader, JS for the tool** — is the
 whole technical story. It means:
@@ -48,6 +65,14 @@ Two static assets for an entire site. No framework runtime, no hydration cost on
 content, no third-party tag soup. Most sites' performance problems are not
 optimisation failures — they are the accumulated cost of dependencies nobody
 audited.
+
+**Calibration — do not oversell this.** Lean delivery is good engineering and it
+helps conversion, but it is not what decides rankings. Two of the most dominant
+programmatic surfaces observed for this playbook ship **~1.1MB and ~1.5MB** per
+page, against the reference implementation's sub-20KB, and outrank almost
+everyone. Authority and intent-match beat page weight, every time. Optimise
+delivery because it is cheap and it serves users — not because you expect
+rankings to move.
 
 ## Core Web Vitals
 

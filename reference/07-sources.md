@@ -114,6 +114,28 @@ https://developers.google.com/search/blog/2024/10/sitelinks-search-box
 - Bing Webmaster Guidelines —
   https://www.bing.com/webmasters/help/webmasters-guidelines-30fba23a
 
+### Link spam and link schemes
+https://developers.google.com/search/docs/essentials/spam-policies
+
+Explicitly prohibited (verbatim):
+- "Buying or selling links for ranking purposes. This includes: Exchanging money
+  for links, or posts that contain links"
+- "Excessive link exchanges ("Link to me and I'll link to you") or partner pages
+  exclusively for the sake of cross-linking"
+- "Using automated programs or services to create links to your site"
+- "Advertorials or native advertising where payment is received for articles
+  that include links that pass ranking credit"
+- "Low-quality directory or bookmark site links"
+- "Requiring a link as part of a Terms of Service, contract, or similar
+  arrangement without allowing a third-party content owner the choice of
+  qualifying the outbound link"
+
+Permitted: "It's not a violation of our policies to have such links as long as
+they are qualified with a `rel="nofollow"` or `rel="sponsored"` attribute."
+
+**Implication:** `09-authority.md`. The violation is passing ranking credit for
+payment — not the payment itself.
+
 ---
 
 ## Tier 2 — Original research with methodology
@@ -134,6 +156,37 @@ earn nothing, then building a large *indexed* surface without demand evidence is
 statistically a losing bet, and the `noindex, follow` tier is how you keep the
 product complete without paying that cost. It also argues for the `00` demand
 cut: pages built on hope are the 96%.
+
+---
+
+### Ahrefs — how long ranking actually takes
+https://ahrefs.com/blog/how-long-does-it-take-to-rank-in-google-and-how-old-are-top-ranking-pages/
+
+- **1.74%** of newly published pages rank in the top 10 within a year (down from
+  5.7% in 2017). An alternative measurement on a different sample gave 6.11% —
+  cite the range, not one figure, when precision matters.
+- **40.82%** of pages that reached the top 10 did so within one month.
+- The average **#1** ranking page is **5 years old** (2 years in 2017).
+- **72.9%** of top-10 pages are more than 3 years old (59% in 2017).
+- Sample: ~1 million random URLs (Sept 2023) against ~1.3 million random US
+  keywords, using crawler first-seen data.
+
+**Implication — the core of `09-authority.md`.** Ranking is bimodal (fast or
+never), incumbency dominates, and therefore a manufactured long-tail surface is
+best understood as a way to win *without* authority. The trend direction also
+matters: every one of these figures has moved against new entrants since 2017.
+
+### Ahrefs — referring domains and rankings
+https://ahrefs.com/blog/links-with-traffic-study/
+
+- Positive correlation between the number of *websites* linking to a page and
+  its search traffic, across ~44,589 non-branded keywords (2,000–5,000 monthly
+  volume) and 10,000 SERPs.
+- Notably, referring domains *with traffic* did not correlate better than
+  referring domains overall — which surprised the researchers.
+
+**Implication:** count referring **domains**, not backlinks. And treat
+third-party authority scores as vendor models, not Google metrics.
 
 ---
 

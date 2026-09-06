@@ -168,25 +168,33 @@ Problem: *"can i afford to move to lisbon on my salary"*. Comparison:
 *"is zurich more expensive than singapore"*. Should-I: *"is berlin cheaper than
 london for students"*.
 
-**Step 3 — demand.** 500 × 499 = 249,500 ordered pairs. Nearly all have zero
-demand — nobody searches *"boise vs bratislava"*. Perhaps 2,000 pairs have real,
-recurring volume, clustered on economically-linked and migration-linked cities.
+**Step 3 — demand.** 500 × 499 = 249,500 *ordered* pairs — but this comparison
+is **symmetric**: *"london vs berlin"* and *"berlin vs london"* are the same job
+and want the same page. So the real space is ~124,750 *unordered* pairs, and one
+canonical order per pair (see the pairs table in `01-architecture.md`). Halving
+the space before you start is the cheapest cut available.
+
+Of those, nearly all have zero demand — nobody searches *"boise vs bratislava"*.
+Perhaps 2,000 pairs have real, recurring volume, clustered on economically- and
+migration-linked cities.
 
 **Step 4 — cut and tier.**
 - Indexed: ~2,000 demand-backed pairs + 500 city entity pages + ~1,500
   attribute × city pages that show demand.
 - `noindex, follow`: the calculator still answers *any* pair a user selects, so
   those URLs resolve and work — but they are excluded from the sitemap and not
-  indexed.
+  indexed. The reverse ordering of each pair canonicalises to its primary.
 - Don't build: nothing, since the calculator is generic; the cost of the middle
   tier here is near zero.
 
-**Result:** ~4,000 indexed pages from a one-page product, and ~245,000 working
-but unindexed URLs. Not 249,500 indexed pages — that would be a scaled-content
+**Result:** ~4,000 indexed pages from a one-page product, and ~120,000 working
+but unindexed URLs. Not 124,750 indexed pages — that would be a scaled-content
 abuse case with no defence.
 
 **Step 5 — URLs.** `/compare/london-vs-berlin`, `/cities/berlin`,
-`/cost-of-living/berlin/students`.
+`/cost-of-living/berlin/students`. Fix one canonical ordering rule for the
+symmetric pairs — alphabetical is the usual choice, because it is deterministic
+and a generator can apply it without a lookup table.
 
 **Step 6 — hubs.** `/compare` (all indexed pairs), `/cities` (all 500). Each pair
 page links both city entity pages, the reverse pair, and sibling pairs sharing a
@@ -196,9 +204,48 @@ The method transfers unchanged. Only the dimensions differ.
 
 ---
 
-## When *not* to manufacture surface
+## When this playbook does not apply
 
-This strategy has real preconditions. It fails, or backfires, when:
+**Read this before applying anything else.** The method here is for sites that
+must *manufacture* demand capture. A large class of sites should not, and
+applying it to them is actively harmful.
+
+### The personal-site and studio case
+
+Three sites studied for this playbook rank at or near the top of genuinely
+competitive queries while doing **almost none** of what the rest of this
+document recommends:
+
+- A well-known independent developer's blog ranks first for hard, competitive
+  front-end queries with **no structured data, no canonical tag, and no robots
+  meta** — carried by one exceptionally good, deep, interactive article per
+  topic.
+- A widely-cited personal essay site serves plain, near-unstyled HTML, no
+  schema, and a `robots` directive that has been dead since the directory it
+  referenced shut down. It is cited everywhere regardless.
+- A globally recognised design studio ships a title tag that reads, in full,
+  `About`. Their brand does the work that a title tag would otherwise have to.
+
+What these have in common: **their ranking comes from brand, singular content,
+and earned links — not from surface area.** There is no matrix to build. A
+portfolio has one "about", one "work", one "contact"; manufacturing variants of
+those would produce exactly the doorway pages this playbook warns against.
+
+For a personal site, portfolio, or studio, the work that actually moves search
+is:
+1. One genuinely excellent, hard-to-replicate piece per topic you want to own
+2. A clear `Person` or `Organization` entity, consistent across the web
+3. Earned links and citations (`09-authority.md`)
+4. Basic technical hygiene — indexable, fast, one H1, honest titles
+5. **Not** a generated page surface
+
+Note the asymmetry, though: those sites can afford a title tag of `About`
+*because* they already have the brand. A new site cannot. Copy their restraint
+about surface; do not copy their indifference to fundamentals.
+
+### The other preconditions
+
+Beyond that, the strategy fails or backfires when:
 
 - **Each page can't say anything specific.** If the only difference between two
   pages is a swapped noun, you are building doorway pages. Either find the

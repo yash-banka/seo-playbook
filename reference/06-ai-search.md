@@ -17,8 +17,18 @@ accident, via a default robots.txt they never read.
 
 - Allow AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot…)
 - Content fully in raw HTML (`05`) — most AI crawlers do **not** execute JS
-- Publish `/llms.txt` — an emerging, **not yet formally adopted** convention for
-  pointing LLMs at your key content in Markdown. Cheap; treat as speculative.
+- Publish `/llms.txt` — a convention for pointing LLMs at your key content in
+  Markdown. **Status as observed: genuinely adopted in one niche, absent
+  elsewhere.** Two major developer platforms studied for this playbook serve
+  substantial ones (roughly 90KB and 13KB; one is titled, in effect, a root map
+  for AI agents), while a large open web reference, an international
+  money-transfer service and a major personal-finance publisher serve none.
+
+  So: real traction among developer-facing sites, no traction among publishers.
+  Still not a formal standard, still cheap to publish. **It matters most when
+  your content is client-rendered** — see the payments-documentation case in
+  `05-technical.md`, where a large `llms.txt` is the compensation for HTML that
+  AI crawlers cannot read.
 - Write extractably: question-shaped headings, a direct answer in the first
   sentence beneath each, self-contained paragraphs that survive being quoted
   without surrounding context
@@ -57,6 +67,43 @@ Meaning: index me for search; do not train on me; reference-only use.
 
 **Costs:** you forfeit AI referral traffic and citation presence, in a channel
 that is growing.
+
+---
+
+---
+
+## The third crawler category: SEO-intelligence bots
+
+The posture debate is usually framed as search vs AI. There is a third class
+that most sites never consider: **backlink and competitive-intelligence
+crawlers** — the bots behind commercial SEO toolsets, which crawl the web to
+build link graphs and keyword databases.
+
+They are not search engines and not AI trainers. They exist so that *anyone*,
+including your competitors, can inspect your backlink profile, your ranking
+keywords, and the shape of your page surface.
+
+An international money-transfer service studied for this playbook disallows a
+long list of these by name, alongside its ordinary rules.
+
+**The trade:**
+
+| Blocking them | Allowing them |
+|---|---|
+| Competitors can't audit your link profile or surface | Your own team can use those tools on your site |
+| Your strategy is harder to copy | You appear in others' research, case studies and comparisons |
+| No effect on Google, Bing, or rankings | Some link-based reputation tooling sees you |
+
+**Worth knowing:** blocking them is invisible to search — these bots have no
+relationship with ranking. The cost is mostly to your own tooling and to being
+studied by others. For a site whose page surface *is* its strategy — exactly the
+kind this playbook teaches you to build — hiding that surface from competitor
+tooling is a defensible move, and one that costs almost nothing.
+
+Note also a narrower variant: a major payments platform blocks the Internet
+Archive's crawler from its documentation while allowing search engines. The
+reasoning is sound — archived, stale API documentation is actively harmful to
+users who find it.
 
 ---
 

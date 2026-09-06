@@ -134,7 +134,31 @@ curl -sIL -H "Accept-Encoding: br,gzip" $BASE/some-page \
 - [ ] Images have explicit dimensions; late-injected content has reserved space
 - [ ] Third-party scripts audited — each one justified
 
-## 10. Maintenance
+## 10. Authority (`reference/09`)
+
+The section most audits skip, and often the real reason a good site doesn't rank.
+
+- [ ] Referring **domains** (not backlinks) — trend over time
+- [ ] Is there anything on this site genuinely worth citing? If not, that is the
+      finding
+- [ ] Any link-scheme exposure — bought links, excessive exchanges, widget
+      links, unqualified advertorials (`reference/07` quotes the policy)
+- [ ] Are target queries realistic for this domain's authority, or is it
+      contesting terms held by 5-year-old incumbents?
+- [ ] Impressions trend in Search Console — do new pages get *any* traction
+      within ~2 months? (Ranking is bimodal; flat at 3 months means change it,
+      not wait)
+
+## 11. Pairs and facets
+
+- [ ] For pair matrices: is the relationship **directional or symmetric**? Both
+      directions indexed for a symmetric relationship = self-inflicted duplicate
+      content (`reference/01`)
+- [ ] Facets: is there a depth threshold, or is the combinatorial space crawlable?
+- [ ] Sort/view/page-size parameters canonicalised away
+- [ ] Same parameter twice in a URL — blocked?
+
+## 12. Maintenance
 
 - [ ] Someone owns regeneration when underlying data changes
 - [ ] Pages with zero impressions get pruned or noindexed

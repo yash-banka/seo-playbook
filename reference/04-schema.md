@@ -106,13 +106,21 @@ the detail most implementations skip.
 1. **Schema must describe what is visibly on the page.** FAQ schema requires the
    Q&A to be visible to the user. Marking up content that isn't there is a
    structured-data violation and risks a manual action.
-2. **Never emit two JSON-LD blocks that declare the same entity types.** A
-   common failure: a second block re-declares `WebSite` and `WebApplication`
-   *without* `@id` anchoring, creating competing, unlinked duplicates of
-   entities the first block had carefully linked — usually a template appending
-   a legacy block after someone wrote a proper graph. Both validate in
-   isolation, so nothing flags it. **Check the rendered output, not just the
-   template.** (`08-pitfalls.md` pitfall 6)
+2. **Never emit *competing* declarations of the same entity.** Note the precise
+   rule: multiple JSON-LD blocks are not themselves a problem. A large B2B
+   automation platform ships ten separate blocks on a single page and ranks
+   dominantly — but it also ships **two `BreadcrumbList` blocks**, which *is*
+   the bug, because two conflicting breadcrumb trails leave a parser to guess.
+
+   The common failure is a second block re-declaring `WebSite` and
+   `WebApplication` *without* `@id` anchoring, creating unlinked duplicates of
+   entities the first block had carefully linked — usually a legacy block a
+   template kept appending. Both validate in isolation, so nothing flags it.
+
+   One `@graph` remains the cleanest approach and is what this playbook
+   recommends. But if your framework emits several blocks, the thing to enforce
+   is **no entity declared twice**, not block count. **Check the rendered
+   output, not just the template.** (`08-pitfalls.md` pitfall 6)
 3. **`FAQPage` and `HowTo` no longer produce rich results at all.** Restricted
    in 2023, then fully deprecated: How-to rich results were dropped from desktop
    and mobile, and FAQ rich results stopped appearing in Google Search in May
