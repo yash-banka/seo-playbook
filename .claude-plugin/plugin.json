@@ -1,0 +1,8 @@
+{
+  "name": "seo-playbook",
+  "description": "Architect a site's page surface for search and AI visibility — the method, not the tips. Three-tier URL architecture, index tiering, schema, GEO postures, authority. Every claim cited to primary sources.",
+  "version": "1.1.0",
+  "author": { "name": "Yash Banka" },
+  "homepage": "https://github.com/yash-banka/seo-playbook",
+  "keywords": ["seo", "geo", "aeo", "technical-seo", "programmatic-seo", "structured-data", "site-architecture", "ai-search"]
+}

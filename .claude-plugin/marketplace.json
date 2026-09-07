@@ -1,0 +1,15 @@
+{
+  "name": "seo-playbook",
+  "owner": {
+    "name": "Yash Banka",
+    "url": "https://github.com/yash-banka"
+  },
+  "plugins": [
+    {
+      "name": "seo-playbook",
+      "source": "./",
+      "description": "Architect a site's page surface for search and AI visibility — the method, not the tips. Three-tier URL architecture, index tiering, schema, GEO postures, authority. Every claim cited to primary sources.",
+      "skills": ["./skills/"]
+    }
+  ]
+}

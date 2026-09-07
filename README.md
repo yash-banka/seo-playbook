@@ -8,8 +8,21 @@ comes up.
 
 ## Install
 
+**In Claude Code** — browse and install from the plugin UI:
+
+```
+/plugin marketplace add yash-banka/seo-playbook
+```
+
+```
+/plugin install seo-playbook@seo-playbook
+```
+
+**Or one command in a terminal** — works with other agents too, not just Claude
+Code:
+
 ```bash
-git clone https://github.com/yash-banka/seo-playbook.git ~/.claude/skills/seo-playbook
+npx skills add yash-banka/seo-playbook
 ```
 
 Then type `/seo-playbook` in Claude Code to confirm it loaded. Or just describe
@@ -17,31 +30,33 @@ the task — it triggers on its own for SEO, GEO, schema, sitemap, indexing,
 backlink, faceted-navigation and site-structure questions.
 
 <details>
-<summary><b>Project-only install, updating, and using it without installing</b></summary>
+<summary><b>Manual install, project scope, updating, and reading it without installing</b></summary>
 
 <br>
 
-**One project only** — run from the repo root, and commit it so your team gets
-it too:
+**Manual** — clone the skill directory straight into place:
 
 ```bash
-git clone https://github.com/yash-banka/seo-playbook.git .claude/skills/seo-playbook
+git clone https://github.com/yash-banka/seo-playbook.git /tmp/seo-playbook \
+  && cp -R /tmp/seo-playbook/skills/seo-playbook ~/.claude/skills/ \
+  && rm -rf /tmp/seo-playbook
 ```
 
-The directory name must be `seo-playbook` either way — that's how the skill is
-addressed. `git clone` creates the parent directories, so there's no `mkdir`
-step.
+**One project only** — replace `~/.claude/skills/` above with `.claude/skills/`
+in your repo root, and commit it so your team gets it too.
 
-**Update later:**
+The directory must be named `seo-playbook` — that's how the skill is addressed.
+
+**Update:**
 
 ```bash
-cd ~/.claude/skills/seo-playbook && git pull
+npx skills update seo-playbook
 ```
 
-**Or don't install it at all.** It's a playbook, not a program. Every file in
-`reference/` reads fine straight from GitHub — start with
-[`00-surface-design.md`](reference/00-surface-design.md). Installing only adds
-the part where Claude loads it automatically while you work.
+**Or don't install it at all.** It's a playbook, not a program. Every file under
+`skills/seo-playbook/reference/` reads fine straight from GitHub — start with
+[`00-surface-design.md`](skills/seo-playbook/reference/00-surface-design.md).
+Installing only adds the part where Claude loads it automatically while you work.
 
 </details>
 
@@ -78,7 +93,7 @@ surface would actively harm them. Three such sites studied for this playbook
 rank at the top of genuinely competitive queries with *no structured data, no
 canonical tags and no robots meta*; one ships a title tag reading, in full,
 `About`. If that's your site, skip to
-[`reference/09-authority.md`](reference/09-authority.md).
+[`reference/09-authority.md`](skills/seo-playbook/reference/09-authority.md).
 
 ## Two modes
 
@@ -93,21 +108,23 @@ fixes it.
 ## Contents
 
 ```
-SKILL.md                      Entry point, routing, the eight rules
-reference/
-  00-surface-design.md        ★ Demand → page surface. The core method.
-  01-architecture.md          Tiered URLs, index tiering, sitemaps
-  02-content.md               Differentiation standard, the thin-content line
-  03-on-page.md               Titles, metadata, headings, link mesh
-  04-schema.md                JSON-LD @graph, entity linking
-  05-technical.md             Rendering, delivery, Core Web Vitals
-  06-ai-search.md             AI visibility vs AI refusal — an explicit fork
-  07-sources.md               Primary-source citations for every claim
-  08-pitfalls.md              Failure modes and how to detect them
-  09-authority.md             Earning the right to rank at all
-templates/                    <head> block, robots.txt, page archetypes
-worksheets/surface-plan.md    ★ Fill-in worksheet for Mode A
-audit-checklist.md            Mode B run sheet, with verification commands
+skills/seo-playbook/
+  SKILL.md                    Entry point, routing, the eight rules
+  reference/
+    00-surface-design.md        ★ Demand → page surface. The core method.
+    01-architecture.md          Tiered URLs, index tiering, sitemaps
+    02-content.md               Differentiation standard, the thin-content line
+    03-on-page.md               Titles, metadata, headings, link mesh
+    04-schema.md                JSON-LD @graph, entity linking
+    05-technical.md             Rendering, delivery, Core Web Vitals
+    06-ai-search.md             AI visibility vs AI refusal — an explicit fork
+    07-sources.md               Primary-source citations for every claim
+    08-pitfalls.md              Failure modes and how to detect them
+    09-authority.md             Earning the right to rank at all
+  templates/                  <head> block, robots.txt, page archetypes
+  worksheets/surface-plan.md  ★ Fill-in worksheet for Mode A
+  audit-checklist.md          Mode B run sheet, with verification commands
+.claude-plugin/               Plugin + marketplace manifests
 ```
 
 ## The core ideas
