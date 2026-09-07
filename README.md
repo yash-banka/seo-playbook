@@ -123,10 +123,40 @@ from that material.
 
 ## Installation
 
+Requires [Claude Code](https://claude.com/claude-code). The directory name must
+be `seo-playbook` — that's how the skill is addressed.
+
+**For all your projects** (most people want this):
+
 ```bash
-git clone <this-repo> ~/.claude/skills/seo-playbook
+git clone https://github.com/yash-banka/seo-playbook.git ~/.claude/skills/seo-playbook
 ```
 
-Claude Code discovers it automatically. Invoke explicitly with
-`/seo-playbook`, or just describe the task — the skill triggers on SEO, GEO,
-schema, sitemap, indexing and site-structure questions.
+**For one project only** — run from the repo root, and commit it so your team
+gets it too:
+
+```bash
+git clone https://github.com/yash-banka/seo-playbook.git .claude/skills/seo-playbook
+```
+
+`git clone` creates the parent directories, so there's no `mkdir` step.
+
+### Check it worked
+
+Start Claude Code and type `/seo-playbook`. If it appears, you're done. You can
+also just describe the task — the skill triggers on its own for SEO, GEO,
+schema, sitemap, indexing, backlink, faceted-navigation and site-structure
+questions.
+
+### Update later
+
+```bash
+cd ~/.claude/skills/seo-playbook && git pull
+```
+
+### Or don't install it at all
+
+It's a playbook, not a program. Every file in `reference/` reads fine straight
+from GitHub — start with
+[`00-surface-design.md`](reference/00-surface-design.md). Installing only adds
+the part where Claude loads it automatically when you're doing the work.
